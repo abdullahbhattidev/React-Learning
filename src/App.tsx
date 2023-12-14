@@ -9,11 +9,10 @@ function App() {
 
   const [array, setarray] = useState([" happy ", " sad "])
   const handleClick = ()=> {
-    setarray([...array, " excited"])
-    console.log(array)
-    // setarray([...array.filter(item=> 
-    //   item!== " happy "
-    //   )])
+    
+      setarray([...array, " excited"].filter(item=> 
+        item!== " happy "
+        ));
   }
   return(
     <>
