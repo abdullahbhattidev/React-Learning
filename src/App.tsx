@@ -21,7 +21,7 @@ function App() {
     <button onClick={handleClick}>click me daddy</button>
     </>    
   )
-  
+  // New code
   // const [drink, setDrink] = useState({
   //   title: "american",
   //   price: 6
