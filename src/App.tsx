@@ -7,19 +7,42 @@ import Like from "./likeButton";
 import Message from "./message";
 function App() {
 
-  const [array, setarray] = useState([" happy ", " sad "])
-  const handleClick = ()=> {
+   const [drink, setDrink] = useState({
+    title: "american",
+    price: 6,
+    address: {
+      street: 2,
+      city: "attock"
+    }
+  })
+
+const handleClick = ()=> {
     
-      setarray([...array, " excited"].filter(item=> 
-        item!== " happy "
-        ));
+      setDrink({...drink, address:{...drink.address, city:"islamabad"}})
   }
+
+  console.log(drink)
   return(
     <>
-    <p> {array} </p>
+    <p> {drink.address.city} </p>
+    
     <button onClick={handleClick}>click me daddy</button>
     </>    
   )
+
+  // const [array, setarray] = useState([" happy ", " sad "])
+  // const handleClick = ()=> {
+    
+  //     setarray([...array, " excited"].filter(item=> 
+  //       item!== " happy "
+  //       ));
+  // }
+  // return(
+  //   <>
+  //   <p> {array} </p>
+  //   <button onClick={handleClick}>click me daddy</button>
+  //   </>    
+  // )
   // New code
   // const [drink, setDrink] = useState({
   //   title: "american",
