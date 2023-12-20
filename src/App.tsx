@@ -5,30 +5,63 @@ import Buttons from "./button";
 import { useState } from "react";
 import Like from "./likeButton";
 import Message from "./message";
+import produce from "immer";
 function App() {
 
-   const [drink, setDrink] = useState({
-    title: "american",
-    price: 6,
-    address: {
-      street: 2,
-      city: "attock"
-    }
-  })
+const[bug, setBug] = useState([
+      {id: 1, title:"bug1", fixed: false},
+      {id: 2, title:"bug2", fixed: true}
+    ])
 
-const handleClick = ()=> {
-    
-      setDrink({...drink, address:{...drink.address, city:"islamabad"}})
-  }
+const handleClick= ()=> {
+  // setBug(bug.map(bugs=> (bugs.id===1? {...bugs, fixed: true} :bugs) ));
+  setBug(produce(draft => {
+   const bugg =  draft.find(bug => bug.id === 1);
+   console.log(bugg);
+    if(bugg) 
+    bugg.fixed = true;
+  }))
+  
+}
 
-  console.log(drink)
   return(
     <>
-    <p> {drink.address.city} </p>
-    
-    <button onClick={handleClick}>click me daddy</button>
-    </>    
+    <button onClick={handleClick}>click me</button>
+    {bug[0].fixed && <p>{bug[0].title}</p>}
+    </>
   )
+
+
+// return(
+//       <>
+//       <p>{bug[0].title}</p>
+      
+//       <button onClick={handleClick}>click me daddy</button>
+//       </>    
+//     )
+
+//    const [drink, setDrink] = useState({
+//     title: "american",
+//     price: 6,
+//     address: {
+//       street: 2,
+//       city: "attock"
+//     }
+//   })
+
+// const handleClick = ()=> {
+    
+//       setDrink({...drink, address:{...drink.address, city:"islamabad"}})
+//   }
+
+//   console.log(drink)
+//   return(
+//     <>
+//     <p> {drink.address.city} </p>
+    
+//     <button onClick={handleClick}>click me daddy</button>
+//     </>    
+//   )
 
   // const [array, setarray] = useState([" happy ", " sad "])
   // const handleClick = ()=> {
@@ -116,13 +149,13 @@ const handleClick = ()=> {
      
     
 
-      {/* {alertVisibility && <Alerts onClose={()=> {setAlertVisivility(false)}}></Alerts> }
-      <Like/>
-      <Buttons buttonType="btn-primary" buttonName="primary" onpressed = {()=> {setAlertVisivility(true)}}
-      ></Buttons> */}
+      // {/* {alertVisibility && <Alerts onClose={()=> {setAlertVisivility(false)}}></Alerts> }
+      // <Like/>
+      // <Buttons buttonType="btn-primary" buttonName="primary" onpressed = {()=> {setAlertVisivility(true)}}
+      // ></Buttons> */}
 
-      {/* <List items= {items} onSelectitem = {handleonSelectitem} /> */}
-      {/* // <List items={["item4", "item5", "item6"]} /> */}
+      // {/* <List items= {items} onSelectitem = {handleonSelectitem} /> */}
+      // {/* // <List items={["item4", "item5", "item6"]} /> */}
   
 }
 
