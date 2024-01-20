@@ -6,30 +6,43 @@ import { useState } from "react";
 import Like from "./likeButton";
 import Message from "./message";
 import produce from "immer";
+import Cart from "./cart"
+import Navbar from "./navbar";
 function App() {
 
-const[bug, setBug] = useState([
-      {id: 1, title:"bug1", fixed: false},
-      {id: 2, title:"bug2", fixed: true}
-    ])
-
-const handleClick= ()=> {
-  // setBug(bug.map(bugs=> (bugs.id===1? {...bugs, fixed: true} :bugs) ));
-  setBug(produce(draft => {
-   const bugg =  draft.find(bug => bug.id === 1);
-   console.log(bugg);
-    if(bugg) 
-    bugg.fixed = true;
-  }))
-  
-}
+  const [products,  setproducts] = useState(["bulb", "wirng", "sockets"])
 
   return(
     <>
-    <button onClick={handleClick}>click me</button>
-    {bug[0].fixed && <p>{bug[0].title}</p>}
+        <Navbar itemsCount={products.length}/>
+        <Cart clearitems={()=> setproducts([])} items={products}/>
+        
     </>
+        
   )
+
+// const[bug, setBug] = useState([
+//       {id: 1, title:"bug1", fixed: false},
+//       {id: 2, title:"bug2", fixed: true}
+//     ])
+
+// const handleClick= ()=> {
+//   // setBug(bug.map(bugs=> (bugs.id===1? {...bugs, fixed: true} :bugs) ));
+//   setBug(produce(draft => {
+//    const bugg =  draft.find(bug => bug.id === 1);
+//    console.log(bugg);
+//     if(bugg) 
+//     bugg.fixed = true;
+//   }))
+  
+// }
+
+//   return(
+//     <>
+//     <button onClick={handleClick}>click me</button>
+//     {bug[0].fixed && <p>{bug[0].title}</p>}
+//     </>
+//   )
 
 
 // return(
