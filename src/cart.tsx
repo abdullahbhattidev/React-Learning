@@ -1,15 +1,14 @@
 interface props {
     items: string [];
-    clearitems: () => void;
+    clearitem: (item: string) => void;
 }
 
-function Cart({items, clearitems}:props) {
+function Cart({items, clearitem}:props) {
     return(
         <>
         <ul>
-        {items.map(item => <li>{item}</li>)}
+        {items.map(item => <li style={{padding: 5}} key={item}>{item} <button onClick={() => clearitem(item)}>delete</button></li>)}
         </ul>
-        <button onClick={clearitems}>clear all</button>
         </>
     )
         

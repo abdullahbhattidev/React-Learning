@@ -15,7 +15,7 @@ function App() {
   return(
     <>
         <Navbar itemsCount={products.length}/>
-        <Cart clearitems={()=> setproducts([])} items={products}/>
+        <Cart clearitem={(item)=> setproducts(products.filter(products => products !== item ))} items={products}/>
         
     </>
         
