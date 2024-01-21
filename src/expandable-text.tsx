@@ -2,9 +2,9 @@ import React, { ReactNode, useState } from "react"
 
 interface props {
     children: string;
-    charMax: number;
+    charMax?: number;
 }
-function ExpandableText({children, charMax}: props){
+function ExpandableText({children, charMax =150}: props){
     const [istext, setistext]= useState(children.slice(0, charMax ));
     let buttonText = "show";
     istext.length !== children.length? buttonText= "show": buttonText= "less"
