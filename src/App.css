@@ -1,0 +1,10 @@
+#submit-form {
+    margin: 10rem 30rem;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+}
+.inner-content{
+    padding: 1rem;
+    background-color: aliceblue;
+}

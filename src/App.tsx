@@ -9,21 +9,26 @@ import produce from "immer";
 import Cart from "./cart"
 import Navbar from "./navbar";
 import ExpandableText from "./expandable-text";
+import Form from "./form";
 function App() {
+
   return(
-    <>
-    <ExpandableText charMax={99}>hello world this is me learning react in typscript and i am following mosh hamadani's react course 
-    hello world this is me learning react in typscript and i am following mosh hamadani's react course
-    hello world this is me learning react in typscript and i am following mosh hamadani's react course
-    hello world this is me learning react in typscript and i am following mosh hamadani's react course
-    hello world this is me learning react in typscript and i am following mosh hamadani's react course
-    hello world this is me learning react in typscript and i am following mosh hamadani's react course
-    hello world this is me learning react in typscript and i am following mosh hamadani's react course
-    hello world this is me learning react in typscript and i am following mosh hamadani's react course
-    </ExpandableText>
-    </>
-    
+    <Form/>
   )
+  // return(
+  //   <>
+  //   <ExpandableText charMax={99}>hello world this is me learning react in typscript and i am following mosh hamadani's react course 
+  //   hello world this is me learning react in typscript and i am following mosh hamadani's react course
+  //   hello world this is me learning react in typscript and i am following mosh hamadani's react course
+  //   hello world this is me learning react in typscript and i am following mosh hamadani's react course
+  //   hello world this is me learning react in typscript and i am following mosh hamadani's react course
+  //   hello world this is me learning react in typscript and i am following mosh hamadani's react course
+  //   hello world this is me learning react in typscript and i am following mosh hamadani's react course
+  //   hello world this is me learning react in typscript and i am following mosh hamadani's react course
+  //   </ExpandableText>
+  //   </>
+    
+  // )
   
 
 

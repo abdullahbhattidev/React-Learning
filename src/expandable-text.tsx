@@ -12,7 +12,7 @@ function ExpandableText({children, charMax =150}: props){
         <>
         <p> {istext}
         <button 
-        onClick={()=> setistext(istext.length !== children.length? children.slice(0, children.length ): children.slice(0, charMax ) )}>
+        onClick={()=> setistext(istext.length !== children.length? children : children.slice(0, charMax ) )}>
         {buttonText}
         </button> 
         </p>
