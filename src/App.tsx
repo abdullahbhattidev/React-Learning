@@ -8,18 +8,36 @@ import Message from "./message";
 import produce from "immer";
 import Cart from "./cart"
 import Navbar from "./navbar";
+import ExpandableText from "./expandable-text";
 function App() {
-
-  const [products,  setproducts] = useState(["bulb", "wirng", "sockets"])
-
   return(
     <>
-        <Navbar itemsCount={products.length}/>
-        <Cart clearitem={(item)=> setproducts(products.filter(products => products !== item ))} items={products}/>
-        
+    <ExpandableText charMax={99}>hello world this is me learning react in typscript and i am following mosh hamadani's react course 
+    hello world this is me learning react in typscript and i am following mosh hamadani's react course
+    hello world this is me learning react in typscript and i am following mosh hamadani's react course
+    hello world this is me learning react in typscript and i am following mosh hamadani's react course
+    hello world this is me learning react in typscript and i am following mosh hamadani's react course
+    hello world this is me learning react in typscript and i am following mosh hamadani's react course
+    hello world this is me learning react in typscript and i am following mosh hamadani's react course
+    hello world this is me learning react in typscript and i am following mosh hamadani's react course
+    </ExpandableText>
     </>
-        
+    
   )
+  
+
+
+
+  // const [products,  setproducts] = useState(["bulb", "wirng", "sockets"])
+
+  // return(
+  //   <>
+  //       <Navbar itemsCount={products.length}/>
+  //       <Cart clearitem={(item)=> setproducts(products.filter(products => products !== item ))} items={products}/>
+        
+  //   </>
+        
+  // )
 
 // const[bug, setBug] = useState([
 //       {id: 1, title:"bug1", fixed: false},
