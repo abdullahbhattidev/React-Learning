@@ -8,7 +8,7 @@ interface formData {
 
 function Form(){
 
-     const {register, handleSubmit, formState: {errors}} = useForm <formData> ()
+     const {register, handleSubmit, formState: {errors, isValid}} = useForm <formData> ()
      console.log(errors)
     return(
         <form id="submit-form" action="submit" onSubmit={handleSubmit(e => console.log(e))}>
@@ -27,7 +27,7 @@ function Form(){
                 {errors.age?.type === "min"  &&<p className="text-danger"> enter the age equals to or above 18</p>}
                 {errors.age?.type === "max"  &&<p className="text-danger"> enter the age equals to or below 40</p>}
             </div>
-            <button className="btn btn-primary">Submit</button>
+            <button disabled= {!isValid} className="btn btn-primary">Submit</button>
             </div>
             
         </form>
