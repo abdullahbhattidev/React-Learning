@@ -10,10 +10,14 @@ import Cart from "./cart"
 import Navbar from "./navbar";
 import ExpandableText from "./expandable-text";
 import Form from "./form";
+import ExpenseTracker from "./expense-tracker";
 function App() {
 
   return(
-    <Form/>
+
+    <ExpenseTracker/>
+
+    // <Form/>
   )
   // return(
   //   <>

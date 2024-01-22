@@ -8,3 +8,14 @@
     padding: 1rem;
     background-color: aliceblue;
 }
+
+.form-container{
+    margin: 0 10rem 0 5rem;
+}
+
+.filter-select{
+    margin: 2rem 10rem 0 5rem;
+}
+.table {
+    margin-top: 5rem;
+}
