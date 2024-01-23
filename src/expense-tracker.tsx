@@ -11,9 +11,9 @@ interface formData{
 function ExpenseTracker(){
     const {register, handleSubmit, formState: {errors}, reset}=useForm<formData>()
     const[entry, setentry] = useState<formData[]>([])
-    
-    
-
+    const totalAmount = entry.map(e => e.amount)
+    const newTotal = totalAmount.map(Number)
+    const total = newTotal.reduce((a,c)=> a+c,0)
     return(
         <>
         <form action="submit" onSubmit={handleSubmit((data) => {
@@ -77,7 +77,7 @@ function ExpenseTracker(){
                             <tr>
                                 <td>Total</td>
                                 <td>
-                                {entry.map(e => e.amount)}
+                                ${total}
                                 </td>
                                 <td></td>
                                 <td></td>
