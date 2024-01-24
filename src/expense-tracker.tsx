@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 import { object } from "zod"
 
@@ -11,14 +11,18 @@ interface formData{
 function ExpenseTracker(){
     const {register, handleSubmit, formState: {errors}, reset}=useForm<formData>()
     const[entry, setentry] = useState<formData[]>([])
-    const totalAmount = entry.map(e => e.amount)
+    const[filter,setfilter]= useState<formData[]>([])
+    const reference = useRef<HTMLSelectElement>(null)
+    const totalAmount = filter.map(e => e.amount)
     const newTotal = totalAmount.map(Number)
     const total = newTotal.reduce((a,c)=> a+c,0)
     return(
         <>
         <form action="submit" onSubmit={handleSubmit((data) => {
-            console.log(data)
-            setentry(entry => [...entry,data])
+            setentry(entry => [...entry,data]);
+            setfilter(filter=> [...filter,data]);
+            if(reference.current!== null)
+            {reference.current.value = "All Categories";}
             reset();
             })}>
             <div className="form-container">
@@ -48,9 +52,13 @@ function ExpenseTracker(){
                 <button className="btn btn-primary">Submit</button>
             </div>
         </form>
-        <div className="filter-select">
-                    <select   className="form-control custom-select" id="category">
-                                    <option selected>All Categories</option>
+        <div className="filter-table">
+                    <select ref={reference}  onChange={(e)=>{ 
+                        if(e.target.value !== "All Categories") {setfilter(entry.filter((item)=> item.category === e.target.value ))} 
+                        else {setfilter(entry)}
+                    } } 
+                        className="form-control custom-select" id="filter-category">
+                                    <option value="All Categories">All Categories</option>
                                     <option value="Groceries">Groceries</option>
                                     <option value="Utilities">Utilities</option>
                                     <option value="Entertainment">Entertainment</option>
@@ -66,12 +74,16 @@ function ExpenseTracker(){
                             </tr>
                         </thead>
                         <tbody>
-                        {entry.map((e, index)=> 
-                            <tr key={index}>
-                                <td>{e?.description}</td>
-                                <td>${e?.amount}</td>
-                                <td>{e?.category}</td>
-                                <td> <button onClick={(row) => setentry(entry.filter(row => row !== e))} className="btn btn-danger">Delete</button></td>
+                            {filter.map((e, i)=> 
+                            <tr key={i}>
+                                <td>{e.description}</td>
+                                <td>${e.amount}</td>
+                                <td>{e.category}</td>
+                                <td> <button onClick={() => {
+                                    setfilter(filter.filter(row => row !== e))
+                                    setentry(entry.filter(row => row !== e))
+                                    console.log(filter)
+                                }} className="btn btn-danger">Delete</button></td>
                             </tr> )}
                         
                             <tr>

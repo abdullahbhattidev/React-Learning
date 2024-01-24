@@ -2,7 +2,6 @@
     margin: 10rem 30rem;
     border-radius: 10px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-
 }
 .inner-content{
     padding: 1rem;
@@ -13,9 +12,12 @@
     margin: 0 10rem 0 5rem;
 }
 
-.filter-select{
+.filter-table{
     margin: 2rem 10rem 0 5rem;
 }
 .table {
     margin-top: 5rem;
+}
+.btn{
+    margin: 1rem 0;
 }
