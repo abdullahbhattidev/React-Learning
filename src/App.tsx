@@ -2,7 +2,7 @@ import "./App.css";
 import List from "./lists";
 import Alerts from "./alert-component/alert";
 import Buttons from "./button";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Like from "./likeButton";
 import Message from "./message";
 import produce from "immer";
@@ -12,13 +12,24 @@ import ExpandableText from "./expandable-text";
 import Form from "./form";
 import ExpenseTracker from "./expense-tracker";
 function App() {
-
+  const refe =useRef<HTMLInputElement>(null)
+  const handleclickevent = ()=> {
+    if(refe.current) refe.current.focus()
+  }
+  useEffect(handleclickevent)
   return(
-
-    <ExpenseTracker/>
-
-    // <Form/>
+    <>
+    <div ><input ref={refe} style={{margin: 20}} className="form-control" type="text" /></div>
+    <button onClick={handleclickevent} className="btn btn-primary">submit</button>
+    </>
+    
   )
+  // return(
+
+  //   <ExpenseTracker/>
+
+  //   // <Form/>
+  // )
   // return(
   //   <>
   //   <ExpandableText charMax={99}>hello world this is me learning react in typscript and i am following mosh hamadani's react course 
