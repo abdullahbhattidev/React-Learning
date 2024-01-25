@@ -12,6 +12,7 @@ function Productlist({category}: props) {
         if(category === "snacks") setproducts(["cookies","chips", "juices"])
         else if(category === "grocery")  setproducts(["milk","oil", "coco powder"])
         
+        return setproducts(["no product to show"]) 
         
     },[category])
     
