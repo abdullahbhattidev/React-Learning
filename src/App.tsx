@@ -11,19 +11,31 @@ import Navbar from "./navbar";
 import ExpandableText from "./expandable-text";
 import Form from "./form";
 import ExpenseTracker from "./expense-tracker";
+import Productlist from "./productList";
+import Select from "./select";
 function App() {
-  const refe =useRef<HTMLInputElement>(null)
-  const handleclickevent = ()=> {
-    if(refe.current) refe.current.focus()
-  }
-  useEffect(handleclickevent)
   return(
     <>
-    <div ><input ref={refe} style={{margin: 20}} className="form-control" type="text" /></div>
-    <button onClick={handleclickevent} className="btn btn-primary">submit</button>
+    <Select/>
+    {/* <Productlist/> */}
     </>
-    
   )
+    
+    
+
+
+  // const refe =useRef<HTMLInputElement>(null)
+  // const handleclickevent = ()=> {
+  //   if(refe.current) refe.current.focus()
+  // }
+  // useEffect(handleclickevent)
+  // return(
+  //   <>
+  //   <div ><input ref={refe} style={{margin: 20}} className="form-control" type="text" /></div>
+  //   <button onClick={handleclickevent} className="btn btn-primary">submit</button>
+  //   </>
+    
+  // )
   // return(
 
   //   <ExpenseTracker/>
