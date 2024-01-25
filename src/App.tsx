@@ -14,10 +14,15 @@ import ExpenseTracker from "./expense-tracker";
 import Productlist from "./productList";
 import Select from "./select";
 function App() {
+   const [SelectedCategory,setSelectedCategory]=useState("")
+  const handleSelectedcategory = (SC:string)=> {
+    setSelectedCategory(SC)
+  }
+
   return(
     <>
-    <Select/>
-    {/* <Productlist/> */}
+    <Select Selectedcategory={handleSelectedcategory}/>
+    <Productlist category={SelectedCategory}/>
     </>
   )
     
