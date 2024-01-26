@@ -13,18 +13,32 @@ import Form from "./form";
 import ExpenseTracker from "./expense-tracker";
 import Productlist from "./productList";
 import Select from "./select";
+import axios from "axios";
 function App() {
-   const [SelectedCategory,setSelectedCategory]=useState("")
-  const handleSelectedcategory = (SC:string)=> {
-    setSelectedCategory(SC)
-  }
 
-  return(
-    <>
-    <Select Selectedcategory={handleSelectedcategory}/>
-    <Productlist category={SelectedCategory}/>
-    </>
-  )
+  const [users, setusers]= useState([])
+  useEffect(()=> {
+    axios.get("https://jsonplaceholder.typicode.com/users")
+    .then(res => {console.log(res)})
+  })
+
+return(
+  <div>
+
+  </div>
+)
+
+  //  const [SelectedCategory,setSelectedCategory]=useState("")
+  // const handleSelectedcategory = (SC:string)=> {
+  //   setSelectedCategory(SC)
+  // }
+
+  // return(
+  //   <>
+  //   <Select Selectedcategory={handleSelectedcategory}/>
+  //   <Productlist category={SelectedCategory}/>
+  //   </>
+  // )
     
     
 
