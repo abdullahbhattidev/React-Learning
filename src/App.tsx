@@ -14,17 +14,22 @@ import ExpenseTracker from "./expense-tracker";
 import Productlist from "./productList";
 import Select from "./select";
 import axios from "axios";
+
+interface user {
+  id: number;
+  name:string;
+}
 function App() {
 
-  const [users, setusers]= useState([])
+  const [users, setusers]= useState<user[]>([])
   useEffect(()=> {
-    axios.get("https://jsonplaceholder.typicode.com/users")
-    .then(res => {console.log(res)})
-  })
+    axios.get<user[]>("https://jsonplaceholder.typicode.com/users")
+    .then(res => {setusers(res.data)})
+  }, [])
 
 return(
   <div>
-
+    {users.map(data => <li>{data.name}</li>)}
   </div>
 )
 
