@@ -13,7 +13,7 @@ import Form from "./form";
 import ExpenseTracker from "./expense-tracker";
 import Productlist from "./productList";
 import Select from "./select";
-import axios, { Axios, AxiosError } from "axios";
+import axios, { CanceledError } from "axios";
 
 interface user {
   id: number;
@@ -24,25 +24,19 @@ function App() {
   const [users, setusers]= useState<user[]>([])
   const [error,seterror]=useState("")
   useEffect(()=> {
-    const fetchData =async () => {
-     try {
-      const response = await axios.get<user[]>("https://jsonplaceholder.typicode.com/users")
-      setusers(response.data)
-     } catch (error) {
-      seterror((error as AxiosError).message)
-      console.log((error as AxiosError).message)
-     }
-    }
-
-    fetchData()
+    const controller = new AbortController()
+    axios.get<user[]>("https://jsonplaceholder.typicode.com/users", {signal: controller.signal})
+    .then(res => {setusers(res.data)})
+    .catch(err=> {if(err instanceof CanceledError) seterror(err.message)})
+    return controller.abort()
   }, [])
 
 return(
   <>
-    {error && <p>{error}</p>}
     <div>
       {users.map(data => <li>{data.id +" "+ data.name}</li>)}
     </div>
+    {error && <p>{error}</p>}
   </>
   
 )
