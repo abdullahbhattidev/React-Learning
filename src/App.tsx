@@ -13,7 +13,7 @@ import Form from "./form";
 import ExpenseTracker from "./expense-tracker";
 import Productlist from "./productList";
 import Select from "./select";
-import axios from "axios";
+import axios, { Axios, AxiosError } from "axios";
 
 interface user {
   id: number;
@@ -24,9 +24,17 @@ function App() {
   const [users, setusers]= useState<user[]>([])
   const [error,seterror]=useState("")
   useEffect(()=> {
-    axios.get<user[]>("https://jsonplaceholder.typicode.com/xusers")
-    .then(res => {setusers(res.data)})
-    .catch(err=> seterror(err.message))
+    const fetchData =async () => {
+     try {
+      const response = await axios.get<user[]>("https://jsonplaceholder.typicode.com/users")
+      setusers(response.data)
+     } catch (error) {
+      seterror((error as AxiosError).message)
+      console.log((error as AxiosError).message)
+     }
+    }
+
+    fetchData()
   }, [])
 
 return(
