@@ -23,18 +23,35 @@ function App() {
 
   const [users, setusers]= useState<user[]>([])
   const [error,seterror]=useState("")
+  const [isLoading,setIsLoading] = useState(false)
   useEffect(()=> {
-    const controller = new AbortController()
-    axios.get<user[]>("https://jsonplaceholder.typicode.com/users", {signal: controller.signal})
-    .then(res => {setusers(res.data)})
-    .catch(err=> {if(err instanceof CanceledError) seterror(err.message)})
-    return controller.abort()
+    const controller = new AbortController();
+    setIsLoading(true)
+    axios
+    .get<user[]>("https://jsonplaceholder.typicode.com/users", {signal: controller.signal})
+    .then(res => {
+      setusers(res.data);
+      setIsLoading(false)})
+
+    .catch(err=> {
+      if(err instanceof CanceledError) return; 
+      seterror(err.message);
+      setIsLoading(false);
+    })
+    //the finally method does not work in strict mode so we did duplication of setislodaing in try and catch
+    // .finally(()=> {
+    //   setIsLoading(false)
+    // });
+    
+
+    return () => controller.abort()
   }, [])
 
 return(
   <>
+    {isLoading && <div className="spinner-border"></div>}
     <div>
-      {users.map(data => <li>{data.id +" "+ data.name}</li>)}
+      {users.map(data => <li>{data.name}</li>)}
     </div>
     {error && <p>{error}</p>}
   </>
