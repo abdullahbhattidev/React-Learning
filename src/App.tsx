@@ -22,15 +22,21 @@ interface user {
 function App() {
 
   const [users, setusers]= useState<user[]>([])
+  const [error,seterror]=useState("")
   useEffect(()=> {
-    axios.get<user[]>("https://jsonplaceholder.typicode.com/users")
+    axios.get<user[]>("https://jsonplaceholder.typicode.com/xusers")
     .then(res => {setusers(res.data)})
+    .catch(err=> seterror(err.message))
   }, [])
 
 return(
-  <div>
-    {users.map(data => <li>{data.name}</li>)}
-  </div>
+  <>
+    {error && <p>{error}</p>}
+    <div>
+      {users.map(data => <li>{data.id +" "+ data.name}</li>)}
+    </div>
+  </>
+  
 )
 
   //  const [SelectedCategory,setSelectedCategory]=useState("")
