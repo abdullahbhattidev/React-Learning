@@ -47,16 +47,29 @@ function App() {
     return () => controller.abort()
   }, [])
 
-return(
-  <>
-    {isLoading && <div className="spinner-border"></div>}
-    <div>
-      {users.map(data => <li>{data.name}</li>)}
-    </div>
-    {error && <p>{error}</p>}
-  </>
-  
-)
+  const updateDelete = (data: user)=> {
+    const original = [...users]
+    setusers(users.filter(user => user.id !== data.id ))
+    axios.delete("https://jsonplaceholder.typicode.com/users" + data.id)
+    .catch(err => {
+      seterror(err.message);
+      setusers(original);
+    })
+  }
+  return(
+    <>
+      {isLoading && <div className="spinner-border"></div>}
+      <div>
+        {users.map(data => <ul className="list-group "> 
+          <li className="list-group-item d-flex justify-content-between">{data.name} 
+          <button onClick={() => updateDelete(data)} className="btn btn-outline-danger">DELETE</button></li>
+        </ul>)}
+        
+      </div>
+      {error && <p>{error}</p>}
+    </>
+    
+  )
 
   //  const [SelectedCategory,setSelectedCategory]=useState("")
   // const handleSelectedcategory = (SC:string)=> {
