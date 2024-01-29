@@ -50,15 +50,31 @@ function App() {
   const updateDelete = (data: user)=> {
     const original = [...users]
     setusers(users.filter(user => user.id !== data.id ))
-    axios.delete("https://jsonplaceholder.typicode.com/users" + data.id)
+    axios.delete("https://jsonplaceholder.typicode.com/users/" + data.id)
     .catch(err => {
       seterror(err.message);
       setusers(original);
     })
   }
+
+  const postDATA = () => {
+    const original = [...users];
+    const newUser = {
+      id: 0,
+      name: "Abdullah"
+    };
+    setusers([newUser, ...users]);
+    axios.post("https://jsonplaceholder.typicode.com/users" , newUser)
+    .then(res => setusers([newUser, ...users]))
+    .catch(err => {
+      seterror(err.message);
+      setusers(original);
+    })
+  } 
   return(
     <>
       {isLoading && <div className="spinner-border"></div>}
+      <button onClick={()=> postDATA()} className="btn btn-primary">ADD</button>
       <div>
         {users.map(data => <ul className="list-group "> 
           <li className="list-group-item d-flex justify-content-between">{data.name} 
