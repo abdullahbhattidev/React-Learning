@@ -13,7 +13,7 @@ import Form from "./form";
 import ExpenseTracker from "./expense-tracker";
 import Productlist from "./productList";
 import Select from "./select";
-import axios, { CanceledError } from "axios";
+import apiClient, { CanceledError } from "./services/api-client";
 
 interface user {
   id: number;
@@ -27,8 +27,8 @@ function App() {
   useEffect(()=> {
     const controller = new AbortController();
     setIsLoading(true)
-    axios
-    .get<user[]>("https://jsonplaceholder.typicode.com/users", {signal: controller.signal})
+    apiClient
+    .get<user[]>("/users", {signal: controller.signal})
     .then(res => {
       setusers(res.data);
       setIsLoading(false)})
@@ -50,7 +50,8 @@ function App() {
   const updateDelete = (data: user)=> {
     const original = [...users]
     setusers(users.filter(user => user.id !== data.id ))
-    axios.delete("https://jsonplaceholder.typicode.com/users/" + data.id)
+    apiClient
+    .delete("/users/" + data.id)
     .catch(err => {
       seterror(err.message);
       setusers(original);
@@ -64,7 +65,8 @@ function App() {
       name: "Abdullah"
     };
     setusers([newUser, ...users]);
-    axios.post("https://jsonplaceholder.typicode.com/users" , newUser)
+    apiClient
+    .post("/users" , newUser)
     .then(res => setusers([newUser, ...users]))
     .catch(err => {
       seterror(err.message);
@@ -76,7 +78,8 @@ function App() {
     const original = [...users];
     const updateVersion = {...user, name: user.name + " Bhatti"}
     setusers(users.map(u => u.id === user.id? updateVersion : u))
-    axios.patch("https://jsonplaceholder.typicode.com/users/" + user.id, updateVersion)
+    apiClient
+    .patch("/users/" + user.id, updateVersion)
     .catch(err => {
       seterror(err.message);
       setusers(original);
