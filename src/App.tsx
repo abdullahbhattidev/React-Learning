@@ -71,14 +71,31 @@ function App() {
       setusers(original);
     })
   } 
+
+  const updateData = (user: user) => {
+    const original = [...users];
+    const updateVersion = {...user, name: user.name + " Bhatti"}
+    setusers(users.map(u => u.id === user.id? updateVersion : u))
+    axios.patch("https://jsonplaceholder.typicode.com/users/" + user.id, updateVersion)
+    .catch(err => {
+      seterror(err.message);
+      setusers(original);
+    })
+  } 
+
   return(
     <>
       {isLoading && <div className="spinner-border"></div>}
       <button onClick={()=> postDATA()} className="btn btn-primary">ADD</button>
       <div>
-        {users.map(data => <ul className="list-group "> 
+        {users.map(data => 
+        <ul className="list-group "> 
           <li className="list-group-item d-flex justify-content-between">{data.name} 
-          <button onClick={() => updateDelete(data)} className="btn btn-outline-danger">DELETE</button></li>
+            <div>
+              <button onClick={()=> updateData(data)} className="btn btn-outline-primary mx-5">UPDATE</button>
+              <button onClick={() => updateDelete(data)} className="btn btn-outline-danger">DELETE</button>
+            </div>
+          </li>
         </ul>)}
         
       </div>
