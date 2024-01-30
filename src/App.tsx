@@ -13,22 +13,20 @@ import Form from "./form";
 import ExpenseTracker from "./expense-tracker";
 import Productlist from "./productList";
 import Select from "./select";
-import apiClient, { CanceledError } from "./services/api-client";
+import userServices, {newUser, user} from "./services/userServices";
+import { CanceledError } from "./services/api-client";
 
-interface user {
-  id: number;
-  name:string;
-}
+
 function App() {
 
   const [users, setusers]= useState<user[]>([])
   const [error,seterror]=useState("")
   const [isLoading,setIsLoading] = useState(false)
+
   useEffect(()=> {
-    const controller = new AbortController();
-    setIsLoading(true)
-    apiClient
-    .get<user[]>("/users", {signal: controller.signal})
+    setIsLoading(true);
+    const {request, cancel}= userServices.getAllUsers();
+    request
     .then(res => {
       setusers(res.data);
       setIsLoading(false)})
@@ -44,29 +42,24 @@ function App() {
     // });
     
 
-    return () => controller.abort()
+    return cancel
   }, [])
 
   const updateDelete = (data: user)=> {
     const original = [...users]
     setusers(users.filter(user => user.id !== data.id ))
-    apiClient
-    .delete("/users/" + data.id)
+    userServices.deleteUser(data)
     .catch(err => {
       seterror(err.message);
       setusers(original);
-    })
+    }) ; 
   }
 
   const postDATA = () => {
     const original = [...users];
-    const newUser = {
-      id: 0,
-      name: "Abdullah"
-    };
     setusers([newUser, ...users]);
-    apiClient
-    .post("/users" , newUser)
+    const post  = userServices.postNewUser()
+    post
     .then(res => setusers([newUser, ...users]))
     .catch(err => {
       seterror(err.message);
@@ -78,8 +71,7 @@ function App() {
     const original = [...users];
     const updateVersion = {...user, name: user.name + " Bhatti"}
     setusers(users.map(u => u.id === user.id? updateVersion : u))
-    apiClient
-    .patch("/users/" + user.id, updateVersion)
+    const update  = userServices.updateUser(user)
     .catch(err => {
       seterror(err.message);
       setusers(original);
