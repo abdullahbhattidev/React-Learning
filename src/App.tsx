@@ -13,7 +13,7 @@ import Form from "./form";
 import ExpenseTracker from "./expense-tracker";
 import Productlist from "./productList";
 import Select from "./select";
-import userServices, {newUser, user} from "./services/userServices";
+import userServices, {user} from "./services/userServices";
 import { CanceledError } from "./services/api-client";
 
 
@@ -25,7 +25,7 @@ function App() {
 
   useEffect(()=> {
     setIsLoading(true);
-    const {request, cancel}= userServices.getAllUsers();
+    const {request, cancel}= userServices.getAll<user>();
     request
     .then(res => {
       setusers(res.data);
@@ -48,7 +48,7 @@ function App() {
   const updateDelete = (data: user)=> {
     const original = [...users]
     setusers(users.filter(user => user.id !== data.id ))
-    userServices.deleteUser(data)
+    userServices.delete<user>(data)
     .catch(err => {
       seterror(err.message);
       setusers(original);
@@ -57,8 +57,14 @@ function App() {
 
   const postDATA = () => {
     const original = [...users];
+
+    const newUser = {
+      id: 0,
+      name: "Abdullah"
+    };
+
     setusers([newUser, ...users]);
-    const post  = userServices.postNewUser()
+    const post  = userServices.post(newUser)
     post
     .then(res => setusers([newUser, ...users]))
     .catch(err => {
@@ -71,7 +77,7 @@ function App() {
     const original = [...users];
     const updateVersion = {...user, name: user.name + " Bhatti"}
     setusers(users.map(u => u.id === user.id? updateVersion : u))
-    const update  = userServices.updateUser(user)
+    userServices.update(user)
     .catch(err => {
       seterror(err.message);
       setusers(original);
