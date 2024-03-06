@@ -16,71 +16,76 @@ import Select from "./select";
 import userServices, {user} from "./services/userServices";
 import { CanceledError } from "./services/api-client";
 import useUsers from "./hooks/useUsers";
+import Todos from "./todos";
 
 
 function App() {
 
-  const {users, error,isLoading, setusers, seterror} = useUsers()
-
-  const updateDelete = (data: user)=> {
-    const original = [...users]
-    setusers(users.filter(user => user.id !== data.id ))
-    userServices.delete<user>(data)
-    .catch(err => {
-      seterror(err.message);
-      setusers(original);
-    }) ; 
-  }
-
-  const postDATA = () => {
-    const original = [...users];
-
-    const newUser = {
-      id: 0,
-      name: "Abdullah"
-    };
-
-    setusers([newUser, ...users]);
-    const post  = userServices.post(newUser)
-    post
-    .then(res => setusers([newUser, ...users]))
-    .catch(err => {
-      seterror(err.message);
-      setusers(original);
-    })
-  } 
-
-  const updateData = (user: user) => {
-    const original = [...users];
-    const updateVersion = {...user, name: user.name + " Bhatti"}
-    setusers(users.map(u => u.id === user.id? updateVersion : u))
-    userServices.update(user)
-    .catch(err => {
-      seterror(err.message);
-      setusers(original);
-    })
-  } 
-
   return(
-    <>
-      {isLoading && <div className="spinner-border"></div>}
-      <button onClick={()=> postDATA()} className="btn btn-primary">ADD</button>
-      <div>
-        {users.map(data => 
-        <ul className="list-group "> 
-          <li className="list-group-item d-flex justify-content-between">{data.name} 
-            <div>
-              <button onClick={()=> updateData(data)} className="btn btn-outline-primary mx-5">UPDATE</button>
-              <button onClick={() => updateDelete(data)} className="btn btn-outline-danger">DELETE</button>
-            </div>
-          </li>
-        </ul>)}
-        
-      </div>
-      {error && <p>{error}</p>}
-    </>
-    
+   <Todos/>
   )
+
+  // const {users, error,isLoading, setusers, seterror} = useUsers()
+
+  // const updateDelete = (data: user)=> {
+  //   const original = [...users]
+  //   setusers(users.filter(user => user.id !== data.id ))
+  //   userServices.delete<user>(data)
+  //   .catch(err => {
+  //     seterror(err.message);
+  //     setusers(original);
+  //   }) ; 
+  // }
+
+  // const postDATA = () => {
+  //   const original = [...users];
+
+  //   const newUser = {
+  //     id: 0,
+  //     name: "Abdullah"
+  //   };
+
+  //   setusers([newUser, ...users]);
+  //   const post  = userServices.post(newUser)
+  //   post
+  //   .then(res => setusers([newUser, ...users]))
+  //   .catch(err => {
+  //     seterror(err.message);
+  //     setusers(original);
+  //   })
+  // } 
+
+  // const updateData = (user: user) => {
+  //   const original = [...users];
+  //   const updateVersion = {...user, name: user.name + " Bhatti"}
+  //   setusers(users.map(u => u.id === user.id? updateVersion : u))
+  //   userServices.update(user)
+  //   .catch(err => {
+  //     seterror(err.message);
+  //     setusers(original);
+  //   })
+  // } 
+
+  // return(
+  //   <>
+  //     {isLoading && <div className="spinner-border"></div>}
+  //     <button onClick={()=> postDATA()} className="btn btn-primary">ADD</button>
+  //     <div>
+  //       {users.map(data => 
+  //       <ul className="list-group "> 
+  //         <li className="list-group-item d-flex justify-content-between">{data.name} 
+  //           <div>
+  //             <button onClick={()=> updateData(data)} className="btn btn-outline-primary mx-5">UPDATE</button>
+  //             <button onClick={() => updateDelete(data)} className="btn btn-outline-danger">DELETE</button>
+  //           </div>
+  //         </li>
+  //       </ul>)}
+        
+  //     </div>
+  //     {error && <p>{error}</p>}
+  //   </>
+    
+  // )
 
   //  const [SelectedCategory,setSelectedCategory]=useState("")
   // const handleSelectedcategory = (SC:string)=> {
