@@ -2,10 +2,8 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
 import { map } from 'zod'
-import apiTodo from './hooks/apiservice'
-interface todos {
-    title?: string
-}
+import apiTodo, { todos } from './hooks/apiservice'
+
 
 const Todos = ({title}: todos) => {
     const {data, error, isLoading} = apiTodo()
