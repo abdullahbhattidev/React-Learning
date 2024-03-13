@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
-export interface todos {
+export interface data {
     title?: string
 }
-const apiTodo = () => {
-    return (useQuery<todos[], Error>({
+const apiTodo = (endpoint : string) => {
+    return (useQuery<data[], Error>({
         queryKey: ['todos'], 
-        queryFn: () => axios.get<todos[]>("https://jsonplaceholder.typicode.com/todos")
+        queryFn: () => axios.get<data[]>("https://jsonplaceholder.typicode.com" + endpoint)
                             .then(res => res.data),
         staleTime: 10 * 1000
     }))

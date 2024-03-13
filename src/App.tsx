@@ -17,13 +17,18 @@ import userServices, {user} from "./services/userServices";
 import { CanceledError } from "./services/api-client";
 import useUsers from "./hooks/useUsers";
 import Todos from "./todos";
+import PostList from "./PostList";
 
 
 
 function App() {
 
   return(
-   <Todos/>
+    <>
+      <Todos/>
+      <PostList/>
+    </>
+   
   )
 
   // const {users, error,isLoading, setusers, seterror} = useUsers()
