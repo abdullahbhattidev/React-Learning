@@ -4,13 +4,15 @@ import React from 'react'
 import { map } from 'zod'
 import apiTodo, { data } from './hooks/apiservice'
 
-
-const PostList = () => {
-    const {data, error, isLoading} = apiTodo("/posts")
+interface props {
+  UserId : number | undefined;
+}
+const PostList = ({UserId}:props) => {
+    const {data, error, isLoading} = apiTodo("/posts", UserId)
     if(error) return <p>{error.message}</p>
     if(isLoading) return <p>Loading...</p>
   return (
-    <ul>{data?.map(post => <li style={{listStyle: 'none'}}>{post.title}</li>)}</ul>
+    <ul className='list-group m-3'>{data?.map(post => <li className='list-group-item' >{post.title}</li>)}</ul>
   )
 }
 

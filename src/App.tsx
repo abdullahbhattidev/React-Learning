@@ -18,15 +18,18 @@ import { CanceledError } from "./services/api-client";
 import useUsers from "./hooks/useUsers";
 import Todos from "./todos";
 import PostList from "./PostList";
+import SelectUsers from "./SelectUsers";
 
 
 
 function App() {
-
+  const [userId, setUserId] = useState<number>()
+ 
   return(
     <>
-      <Todos/>
-      <PostList/>
+      <SelectUsers onChange={(userid)=> setUserId(userid)}/>
+      <Todos UserId={userId}/>
+      <PostList UserId={userId}/>
     </>
    
   )
