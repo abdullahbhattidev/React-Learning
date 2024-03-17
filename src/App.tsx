@@ -27,13 +27,13 @@ function App() {
   const pageSize = 10;
   const [userId, setUserId] = useState<number>()
   const [pageNo, setPageNo] = useState(1)
-  
+  console.log(userId)
   return(
     <>
       <SelectUsers onChange={(userid)=> setUserId(userid)}/>
       <Todos pageSize={pageSize} pageNo={pageNo} userId={userId}/>
-      {/* <PostList pageSize={pageSize} pageNo={pageNo} userId={userId}/> */}
-      <PaginatedButtons nextPage={(ittierate)=> setPageNo(pageNo+ittierate)}/>
+      <PostList pageSize={pageSize} pageNo={pageNo} userId={userId}/>
+      <PaginatedButtons currentpage={pageNo} nextPage={(ittierate)=> setPageNo(pageNo+ittierate)}/>
     </>
    
   )

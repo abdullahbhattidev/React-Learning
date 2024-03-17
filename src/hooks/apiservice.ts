@@ -8,13 +8,13 @@ export interface data {
 
 interface querydata {
     endpoint: string,
-    userId: number | undefined
-    pageSize: number;
+    userId?: number | undefined,
+    pageSize: number,
     pageNo: number
 }
 const apiTodo = ({endpoint, userId, pageSize, pageNo}: querydata) => {
     return (useQuery<data[], Error>({
-        queryKey: userId? ['users', userId, endpoint] : [endpoint],
+        queryKey: userId? [endpoint, userId, pageSize, pageNo] : [endpoint, pageSize, pageNo],
         queryFn: () => axios.get<data[]>("https://jsonplaceholder.typicode.com" + endpoint, {
             params: {
                 userId,
@@ -23,7 +23,7 @@ const apiTodo = ({endpoint, userId, pageSize, pageNo}: querydata) => {
             }
         })
         .then(res => res.data),
-        keepPreviousData: true
+        keepPreviousData: true,
     }))
 }
 export default apiTodo
