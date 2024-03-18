@@ -14,7 +14,7 @@ interface querydata {
 }
 const apiTodo = ({endpoint, userId, pageSize, pageNo}: querydata) => {
     return (useQuery<data[], Error>({
-        queryKey: userId? [endpoint, userId, pageSize, pageNo] : [endpoint, pageSize, pageNo],
+        queryKey:[endpoint, userId, pageSize, pageNo],
         queryFn: () => axios.get<data[]>("https://jsonplaceholder.typicode.com" + endpoint, {
             params: {
                 userId,
@@ -24,6 +24,7 @@ const apiTodo = ({endpoint, userId, pageSize, pageNo}: querydata) => {
         })
         .then(res => res.data),
         keepPreviousData: true,
+        // staleTime: 1*60*1000
     }))
 }
 export default apiTodo

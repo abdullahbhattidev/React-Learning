@@ -21,19 +21,17 @@ import PostList from "./PostList";
 import SelectUsers from "./SelectUsers";
 import PaginatedButtons from "./paginatedButtons";
 
-
-
 function App() {
   const pageSize = 10;
+  const [yeslastpage, setlastpage] = useState(false)
   const [userId, setUserId] = useState<number>()
   const [pageNo, setPageNo] = useState(1)
-  console.log(userId)
   return(
     <>
       <SelectUsers onChange={(userid)=> setUserId(userid)}/>
-      <Todos pageSize={pageSize} pageNo={pageNo} userId={userId}/>
-      <PostList pageSize={pageSize} pageNo={pageNo} userId={userId}/>
-      <PaginatedButtons currentpage={pageNo} nextPage={(ittierate)=> setPageNo(pageNo+ittierate)}/>
+      <Todos lastPage={(yess)=> {setlastpage(yess)}} pageSize={pageSize} pageNo={pageNo} userId={userId}/>
+      <PostList  pageSize={pageSize} pageNo={pageNo} userId={userId}/>
+      <PaginatedButtons lastPage = {yeslastpage} currentpage={pageNo} nextPage={(ittierate)=> setPageNo(pageNo+ittierate)}/>
     </>
    
   )

@@ -7,7 +7,7 @@ import apiTodo, { data } from './hooks/apiservice'
 interface props {
   userId?: number | undefined;
   pageSize: number;
-  pageNo: number
+  pageNo: number;
 }
 const PostList = ({userId, pageSize, pageNo}:props) => {
     const {data, error, isLoading} = apiTodo({endpoint: "/posts", userId, pageSize, pageNo})
