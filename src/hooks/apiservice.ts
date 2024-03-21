@@ -3,10 +3,10 @@ import axios, { all } from "axios"
 
 export interface data {
     title?: string,
-    id? : string
+    id? : number
 }
 
-interface querydata {
+export interface querydata {
     endpoint: string,
     userId?: number | undefined,
     pageSize: number,

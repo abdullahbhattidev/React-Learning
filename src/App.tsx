@@ -20,6 +20,7 @@ import Todos from "./todos";
 import PostList from "./PostList";
 import SelectUsers from "./SelectUsers";
 import PaginatedButtons from "./paginatedButtons";
+import AddNewData from "./AddNewData";
 
 function App() {
   const pageSize = 10;
@@ -27,6 +28,7 @@ function App() {
   return(
     <>
       <SelectUsers onChange={(userid)=> setUserId(userid)}/>
+      <AddNewData/>
       <Todos  pageSize={pageSize}  userId={userId}/>
       <PostList  pageSize={pageSize}  userId={userId}/>
     </>
