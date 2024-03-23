@@ -10,7 +10,7 @@ interface props {
   pageSize: number;
 }
 const Todos = ({userId, pageSize}:props) => {
-    const {data, error, isLoading, fetchNextPage, isFetchingNextPage} = apiTodo({endpoint: "/todos", userId, pageSize})
+    const {data, error, isLoading, fetchNextPage, isFetchingNextPage} = apiTodo({endpoint: "todos", userId, pageSize})
     if(error) return <p>{error.message}</p>
     if(isLoading) return <p>Loading...</p>  
   return (

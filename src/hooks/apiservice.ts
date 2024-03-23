@@ -2,10 +2,16 @@ import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
 import axios, { all } from "axios"
 
 export interface data {
+    userId?: number,
     title?: string,
     id? : number
+    completed?: boolean
 }
-
+export interface Data {
+    pages: {
+        0:[]
+    };
+}
 export interface querydata {
     endpoint: string,
     userId?: number | undefined,
@@ -15,7 +21,7 @@ const apiTodo = ({endpoint, userId, pageSize}: querydata) => {
     return (
         useInfiniteQuery<data[], Error>({
         queryKey:[endpoint, userId, pageSize],
-        queryFn: ({pageParam = 1}) => axios.get<data[]>("https://jsonplaceholder.typicode.com" + endpoint, {
+        queryFn: ({pageParam = 1}) => axios.get<data[]>("https://jsonplaceholder.typicode.com/" + endpoint, {
             params: {
                 userId,
                 _start: (pageParam - 1)* pageSize,

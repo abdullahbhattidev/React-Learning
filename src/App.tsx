@@ -24,7 +24,7 @@ import AddNewData from "./AddNewData";
 
 function App() {
   const pageSize = 10;
-  const [userId, setUserId] = useState<number>()
+  const [userId, setUserId] = useState<number | undefined>()
   return(
     <>
       <SelectUsers onChange={(userid)=> setUserId(userid)}/>

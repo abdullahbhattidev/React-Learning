@@ -10,9 +10,10 @@ interface props {
   pageSize: number;
 }
 const PostList = ({userId, pageSize}:props) => {
-    const {data, error, isLoading, fetchNextPage, isFetchingNextPage} = apiTodo({endpoint: "/posts", userId, pageSize})
+    const {data, error, isLoading, fetchNextPage, isFetchingNextPage} = apiTodo({endpoint: "posts", userId, pageSize})
     if(error) return <p>{error.message}</p>
     if(isLoading) return <p>Loading...</p>
+    console.log(data)
   return (
     <>
         <ul className='list-group m-3'>{data.pages?.map(posts => posts.map(post => <li className='list-group-item' > {post.id} {post.title}</li>) )}</ul>
