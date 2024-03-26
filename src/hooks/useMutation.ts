@@ -32,6 +32,7 @@ const newData = (endpoint: string) => {
                     }
                 })      
             }
+            
         })
     )
 }
