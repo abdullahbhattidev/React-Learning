@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react'
 import newData from './hooks/useMutation'
+import axios, { Axios, AxiosError } from 'axios'
+import { isError } from '@tanstack/react-query'
 
 const AddNewData = () => {
   const [endpoint, setendpoint] = useState<string>("Select the category")
@@ -29,7 +31,7 @@ const AddNewData = () => {
             <option value="posts">Posts</option>
         </select>
     </form>
-    {endpoint=== "Select the category"? <p className='ms-3'>must select the category</p>: null}
+    {addNewData.error && <p className='ms-3'>{addNewData.error.message}</p>}
     </>
     
   )

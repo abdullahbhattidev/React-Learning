@@ -7,7 +7,7 @@ const newData = (endpoint: string) => {
     const queryClient = useQueryClient()
    
     return(
-        useMutation({
+        useMutation<data, Error,data>({
             mutationFn:(data : data) => axios.post<data>("https://jsonplaceholder.typicode.com/" + endpoint, data)
                 .then(res => res.data),
             onSuccess: (savedData, updatedData )=> {
@@ -30,7 +30,7 @@ const newData = (endpoint: string) => {
                         ...existingData,
                         pages: [[savedData, ...(existingData?.pages[0]|| [])]]
                     }
-                })   
+                })      
             }
         })
     )

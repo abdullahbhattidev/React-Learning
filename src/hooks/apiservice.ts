@@ -10,7 +10,7 @@ export interface data {
 export interface Data {
     pages: {
         0:[]
-    };
+    }
 }
 export interface querydata {
     endpoint: string,
