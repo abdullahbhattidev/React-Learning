@@ -9,7 +9,7 @@ export interface data {
 }
 export interface Data {
     pages: {
-        0:[] 
+        0:[]
     } 
 }
 export interface querydata {
