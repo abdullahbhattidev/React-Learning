@@ -1,7 +1,5 @@
-import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
-import { map, number } from 'zod'
 import apiTodo, { data } from './hooks/apiservice'
 import PaginatedButtons from './paginatedButtons'
 

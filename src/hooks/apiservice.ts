@@ -4,13 +4,13 @@ import axios, { all } from "axios"
 export interface data {
     userId?: number,
     title?: string,
-    id? : number
+    id? : number,
     completed?: boolean
 }
 export interface Data {
     pages: {
-        0:[]
-    }
+        0:[] 
+    } 
 }
 export interface querydata {
     endpoint: string,
