@@ -27,7 +27,15 @@ const newData = (endpoint: string) => {
         },
 
         onSuccess: (savedData, updatedData) => {
-            if (!updatedData || !updatedData.id) return;
+            //approach 1 to invalidate the cache and get updated data from the erver
+                // queryClient.invalidateQueries({
+                //     queryKey: [endpoint]
+                // })
+                //approah 2 to update the cache
+                
+                // Append the new data to the existing data
+                
+                // Update the cache with the combined data
             queryClient.setQueryData<Data | undefined>([endpoint, null, 10], (existingData) => {
                 if (!existingData) {
                     return { pages: [[savedData]] };
