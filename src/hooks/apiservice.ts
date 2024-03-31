@@ -8,9 +8,7 @@ export interface data {
     completed?: boolean
 }
 export interface Data {
-    pages: {
-        0:[]
-    } 
+    pages: data[][]
 }
 export interface querydata {
     endpoint: string,
