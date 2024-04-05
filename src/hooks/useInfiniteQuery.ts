@@ -1,12 +1,9 @@
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
-import axios, { all } from "axios"
+import { useInfiniteQuery } from "@tanstack/react-query"
+import axios from "axios"
+import httpServicesTodos from "../services/httpServicesTodos"
+import { data } from "../services/apiClient"
 
-export interface data {
-    userId?: number,
-    title?: string,
-    id? : number,
-    completed?: boolean
-}
+
 export interface Data {
     pages: data[][]
 }
@@ -19,14 +16,13 @@ const apiTodo = ({endpoint, userId, pageSize}: querydata) => {
     return (
         useInfiniteQuery<data[], Error>({
         queryKey:[endpoint, userId, pageSize],
-        queryFn: ({pageParam = 1}) => axios.get<data[]>("https://jsonplaceholder.typicode.com/" + endpoint, {
+        queryFn: ({pageParam = 1}) => httpServicesTodos.getAll({
             params: {
                 userId,
                 _start: (pageParam - 1)* pageSize,
                 _limit: pageSize
             }
-        })
-        .then(res => res.data),
+        }),
         keepPreviousData: true,
         getNextPageParam: (lastPage, allPages) => {
             return lastPage.length > 0? allPages.length+1: "last page"

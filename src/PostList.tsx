@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React from 'react'
-import apiTodo, { data } from './hooks/apiservice'
+import apiTodo, { data } from './hooks/useInfiniteQuery'
 import PaginatedButtons from './paginatedButtons'
 
 interface props {

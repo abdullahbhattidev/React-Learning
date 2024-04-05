@@ -1,26 +1,9 @@
+import { useState } from "react";
+import AddNewData from "./AddNewData";
 import "./App.css";
-import List from "./lists";
-import Alerts from "./alert-component/alert";
-import Buttons from "./button";
-import { useEffect, useRef, useState } from "react";
-import Like from "./likeButton";
-import Message from "./message";
-import produce from "immer";
-import Cart from "./cart"
-import Navbar from "./navbar";
-import ExpandableText from "./expandable-text";
-import Form from "./form";
-import ExpenseTracker from "./expense-tracker";
-import Productlist from "./productList";
-import Select from "./select";
-import userServices, {user} from "./services/userServices";
-import { CanceledError } from "./services/api-client";
-import useUsers from "./hooks/useUsers";
-import Todos from "./todos";
 import PostList from "./PostList";
 import SelectUsers from "./SelectUsers";
-import PaginatedButtons from "./paginatedButtons";
-import AddNewData from "./AddNewData";
+import Todos from "./todos";
 
 function App() {
   const pageSize = 10;
@@ -30,7 +13,7 @@ function App() {
       <SelectUsers onChange={(userid)=> setUserId(userid)}/>
       <AddNewData/>
       <Todos  pageSize={pageSize}  userId={userId}/>
-      <PostList  pageSize={pageSize}  userId={userId}/>
+      {/* <PostList  pageSize={pageSize}  userId={userId}/> */}
     </>
    
   )

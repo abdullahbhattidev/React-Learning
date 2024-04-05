@@ -1,6 +1,5 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import newData from './hooks/useMutation'
-import axios, { Axios, AxiosError } from 'axios'
 
 const AddNewData = () => {
   const [endpoint, setendpoint] = useState<string>("Select the category")
