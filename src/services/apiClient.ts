@@ -20,8 +20,8 @@ class APIClient<data> {
                           .then(res => res.data)
     }
 
-    post = () => {
-        return axiosInstant.post(this.endpoint)
+    post = (T: {}) => {
+        return axiosInstant.post(this.endpoint, T)
                            .then(res => res.data)
     }
 }

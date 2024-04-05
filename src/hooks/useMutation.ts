@@ -1,7 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { Data } from "./useInfiniteQuery";
 import { data } from "../services/apiClient";
+import { Data } from "./useInfiniteQuery";
+import httpServicesTodos from "../services/httpServicesTodos";
+import httpServicesPosts from "../services/httpServicesPosts";
 
 interface AddDataContext {
     previousData: Data | undefined;
@@ -10,9 +12,7 @@ interface AddDataContext {
 const newData = (endpoint: string) => {
     const queryClient = useQueryClient();
     return useMutation<data, Error, data, AddDataContext>({
-        mutationFn: (data: data) => axios.post<data>("https://jsonplaceholder.typicode.com/" + endpoint, data)
-            .then(res => res.data),
-        
+        mutationFn: (data: data) => endpoint === "todos"? httpServicesTodos.post(data) : httpServicesPosts.post(data),
         onMutate: (updatedData: data) => {
             const previousData = queryClient.getQueryData<Data>([endpoint, null, 10]);
             queryClient.setQueryData<Data | undefined>([endpoint, null, 10], existingData => {
