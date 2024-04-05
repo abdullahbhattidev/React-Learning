@@ -1,14 +1,12 @@
-import axios from 'axios'
-import React from 'react'
-import apiTodo, { data } from './hooks/useInfiniteQuery'
-import PaginatedButtons from './paginatedButtons'
+import apiEndpoint from './hooks/useInfiniteQuery';
+import PaginatedButtons from './paginatedButtons';
 
 interface props {
   userId?: number | undefined;
   pageSize: number;
 }
 const PostList = ({userId, pageSize}:props) => {
-    const {data, error, isLoading, fetchNextPage, isFetchingNextPage} = apiTodo({endpoint: "posts", userId, pageSize})
+    const {data, error, isLoading, fetchNextPage, isFetchingNextPage} = apiEndpoint({endpoint: "posts", userId, pageSize})
     if(error) return <p>{error.message}</p>
     if(isLoading) return <p>Loading...</p>
   return (

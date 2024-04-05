@@ -13,7 +13,7 @@ function App() {
       <SelectUsers onChange={(userid)=> setUserId(userid)}/>
       <AddNewData/>
       <Todos  pageSize={pageSize}  userId={userId}/>
-      {/* <PostList  pageSize={pageSize}  userId={userId}/> */}
+      <PostList  pageSize={pageSize}  userId={userId}/>
     </>
    
   )

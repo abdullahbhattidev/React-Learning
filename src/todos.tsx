@@ -1,16 +1,12 @@
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
-import React from 'react'
-import { map } from 'zod'
+import apiEndpoint from './hooks/useInfiniteQuery'
 import PaginatedButtons from './paginatedButtons'
-import apiTodo from './hooks/useInfiniteQuery'
 
 interface props {
   userId?: number | undefined;
   pageSize: number;
 }
 const Todos = ({userId, pageSize}:props) => {
-    const {data, error, isLoading, fetchNextPage, isFetchingNextPage} = apiTodo({endpoint: "todos", userId, pageSize})
+    const {data, error, isLoading, fetchNextPage, isFetchingNextPage} = apiEndpoint({endpoint: "todos", userId, pageSize})
     if(error) return <p>{error.message}</p>
     if(isLoading) return <p>Loading...</p>  
   return (
