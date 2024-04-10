@@ -5,10 +5,15 @@ import PostList from "./PostList";
 import SelectUsers from "./SelectUsers";
 import Todos from "./todos";
 import Counter from "./statemanagement/Counter";
+import TaskList from "./statemanagement/TaskList";
 
 function App() {
   return(
-    <Counter/>
+    <>
+      <Counter/>
+      <TaskList/>
+    </>
+   
   )
 
 
