@@ -1,19 +1,13 @@
-import { useState } from "react";
-import AddNewData from "./AddNewData";
 import "./App.css";
-import PostList from "./PostList";
-import SelectUsers from "./SelectUsers";
-import Todos from "./todos";
 import Counter from "./statemanagement/Counter";
-import TaskList from "./statemanagement/TaskList";
+import LoginStatus from "./statemanagement/LoginStatus";
 
 function App() {
   return(
     <>
       <Counter/>
-      <TaskList/>
+      <LoginStatus/>
     </>
-   
   )
 
 
