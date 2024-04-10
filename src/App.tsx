@@ -4,19 +4,26 @@ import "./App.css";
 import PostList from "./PostList";
 import SelectUsers from "./SelectUsers";
 import Todos from "./todos";
+import Counter from "./statemanagement/Counter";
 
 function App() {
-  const pageSize = 10;
-  const [userId, setUserId] = useState<number | undefined>()
   return(
-    <>
-      <SelectUsers onChange={(userid)=> setUserId(userid)}/>
-      <AddNewData/>
-      <Todos  pageSize={pageSize}  userId={userId}/>
-      <PostList  pageSize={pageSize}  userId={userId}/>
-    </>
-   
+    <Counter/>
   )
+
+
+
+  // const pageSize = 10;
+  // const [userId, setUserId] = useState<number | undefined>()
+  // return(
+  //   <>
+  //     <SelectUsers onChange={(userid)=> setUserId(userid)}/>
+  //     <AddNewData/>
+  //     <Todos  pageSize={pageSize}  userId={userId}/>
+  //     <PostList  pageSize={pageSize}  userId={userId}/>
+  //   </>
+   
+  // )
 
   // const {users, error,isLoading, setusers, seterror} = useUsers()
 
