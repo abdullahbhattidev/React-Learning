@@ -5,7 +5,7 @@ export interface Task{
     title: string;
 }
 
-interface Action{
+export interface Action{
     type: "ADD" | "DELETE"
     taskid?: number
 }

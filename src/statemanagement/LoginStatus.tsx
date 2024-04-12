@@ -13,10 +13,9 @@ const LoginStatus = () => {
   return (
     <div>
         <div>
-            <span>{status}</span>
-            <a onClick={()=> dispatch({type:"LOGOUT"}) } href='#'>Logout</a>
+            <span className='mx-3'>{status}</span>
+            <a  onClick={()=> dispatch({type:"LOGOUT"}) } href='#'>Logout</a>
         </div>
-        <TaskList/>
     </div>
   )
 }
