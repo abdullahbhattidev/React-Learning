@@ -1,23 +1,19 @@
 import { useReducer } from "react";
 import "./App.css";
 import Counter from "./statemanagement/Counter";
-import LoginStatus from "./statemanagement/LoginStatus";
 import Navbar from "./statemanagement/Navbar";
+import taskContext from "./statemanagement/TaskContext";
 import TaskList from "./statemanagement/TaskList";
 import taskReducer from "./statemanagement/taskReducer";
-import taskContext, { taskContextType } from "./statemanagement/TaskContext";
 
 function App() {
   const[tasks, dispatch]=useReducer(taskReducer,[])
   return(
-    
     <taskContext.Provider value={{tasks, dispatch}}>
       <Counter/>
       <Navbar/>
-      <TaskList/>
+      <TaskList />
     </taskContext.Provider>
-      
-    
   )
 
 
