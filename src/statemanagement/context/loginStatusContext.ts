@@ -4,7 +4,7 @@ import React from "react"
 
 export interface AuthContextType{
     status: string,
-    authdispatch: Dispatch<AuthAction>
+    dispatch: Dispatch<AuthAction>
 }
 
 const AuthContext = React.createContext<AuthContextType>({} as AuthContextType)

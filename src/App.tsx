@@ -7,18 +7,22 @@ import TaskList from "./statemanagement/TaskList";
 import taskReducer from "./statemanagement/taskReducer";
 import loginStatusReducer from "./statemanagement/loginStatusReducer";
 import AuthContext from "./statemanagement/context/loginStatusContext";
+import AuthProvider from "./statemanagement/AuthProvider";
+import TaskProvider from "./statemanagement/TaskProvider";
 
 function App() {
-  const[tasks, taskdispatch]=useReducer(taskReducer,[])
-  const [status, authdispatch]= useReducer(loginStatusReducer,"")
+  
+  
   return(
-    <AuthContext.Provider value={{status, authdispatch}}>
-      <taskContext.Provider value={{tasks,taskdispatch}}>
+    <AuthProvider>
+      <TaskProvider>
         {/* <Counter/> */}
         <Navbar/>
         <TaskList />
-      </taskContext.Provider>
-    </AuthContext.Provider>
+      </TaskProvider>
+    </AuthProvider>
+      
+    
     
   )
 
