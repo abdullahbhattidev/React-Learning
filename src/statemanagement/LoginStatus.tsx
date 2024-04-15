@@ -1,19 +1,17 @@
-import { useContext, useReducer } from 'react'
-import loginStatusReducer from './loginStatusReducer'
-import AuthContext from './context/loginStatusContext'
+import useAuthStore from './AuthStore'
 
-const LoginStatus = () => {
-  const {status,dispatch}=useContext(AuthContext)
-  if(!status)
+const LoginStatus = () => {  
+  const{user, Login,Logout}=useAuthStore()
+  if(!user)
   return (
     <div className='mx-3'>
-        <a className = "text-white"  onClick={()=> dispatch({type:"LOGIN"}) } href='#'>Login</a>
+        <a className = "text-white"  onClick={()=> Login()} href='#'>Login</a>
     </div>
   )
   return (
     <div className='mx-3'>
-      <span className='mx-3'>{status}</span>
-      <a  className = "text-white" onClick={()=> dispatch({type:"LOGOUT"}) } href='#'>Logout</a>
+      <span className='mx-3'>{user}</span>
+      <a  className = "text-white" onClick={()=> Logout() } href='#'>Logout</a>
     </div>
   
   )

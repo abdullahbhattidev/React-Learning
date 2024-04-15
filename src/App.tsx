@@ -1,29 +1,17 @@
-import { useReducer } from "react";
 import "./App.css";
 import Counter from "./statemanagement/Counter";
 import Navbar from "./statemanagement/Navbar";
-import taskContext from "./statemanagement/context/TaskContext";
 import TaskList from "./statemanagement/TaskList";
-import taskReducer from "./statemanagement/taskReducer";
-import loginStatusReducer from "./statemanagement/loginStatusReducer";
-import AuthContext from "./statemanagement/context/loginStatusContext";
-import AuthProvider from "./statemanagement/AuthProvider";
-import TaskProvider from "./statemanagement/TaskProvider";
 
 function App() {
-  
-  
-  return(
-    <AuthProvider>
-      <TaskProvider>
-        <Counter/>
-        <Navbar/>
-        <TaskList />
-      </TaskProvider>
-    </AuthProvider>
+return(
+    <>
+     <Counter/>
+      <Navbar/>
+      <TaskList />
+    </>
+        
       
-    
-    
   )
 
 

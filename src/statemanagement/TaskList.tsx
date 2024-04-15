@@ -1,17 +1,16 @@
-import { useContext } from 'react'
-import taskContext from './context/TaskContext'
-import AuthContext from './context/loginStatusContext'
+import useAuthStore from './AuthStore'
+import useTaskStore from './TaskStore'
 
 const TaskList = () => {
-   const {tasks, dispatch}=useContext(taskContext)
-   const {status}=useContext(AuthContext)
+  const {Tasks, Add, Delete} =useTaskStore()
+   const{user}=useAuthStore()
   return (
     <>
-        <button disabled={!status} className='btn btn-primary mx-3' onClick={()=> dispatch({type: "ADD"})}>Add Task</button>
+        <button disabled={!user} className='btn btn-primary mx-3' onClick={()=> Add()}>Add Task</button>
         <ul>
-          {status && tasks.map((t,i)=> 
+          {user && Tasks.map((t,i)=> 
           <li className='d-flex justify-content-between' key={i}>{t.title} 
-            <button  className='btn btn-danger mx-5' onClick={()=> dispatch({type:"DELETE", taskid: t.id})}>Delete</button>
+            <button  className='btn btn-danger mx-5' onClick={()=> Delete(t.id)}>Delete</button>
           </li>)}
         </ul>
     </>
