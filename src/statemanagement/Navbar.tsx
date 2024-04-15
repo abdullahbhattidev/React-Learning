@@ -3,7 +3,8 @@ import LoginStatus from './LoginStatus'
 import useTaskStore from './TaskStore'
 
 const Navbar = () => {
-  const {Tasks, Add} =useTaskStore()
+  const Tasks =useTaskStore(s=> s.Tasks);
+
   return (
     <nav className='navbar navbar-expand-lg navbar-light bg-primary d-flex justify-content-between text-white'>
         <div className='mx-3 '>

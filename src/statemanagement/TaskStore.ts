@@ -16,7 +16,7 @@ const useTaskStore = create<TaskStore>(set=> ({
    Add: ()=> set(TaskList=> ({
     Tasks: [{id: Date.now(), title: `Task ${Date.now()}`},...TaskList.Tasks]
    })),
-  Delete: (taskid)=> set(TaskList=> ({Tasks: TaskList.Tasks.filter(t=> t.id!==taskid)}))
+  Delete: (taskid)=> set(TaskList=> ({Tasks: TaskList.Tasks.filter(t=> t.id!==taskid)})),
 }))
 
 export default useTaskStore
