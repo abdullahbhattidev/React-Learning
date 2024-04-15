@@ -16,7 +16,7 @@ function App() {
   return(
     <AuthProvider>
       <TaskProvider>
-        {/* <Counter/> */}
+        <Counter/>
         <Navbar/>
         <TaskList />
       </TaskProvider>
