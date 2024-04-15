@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { mountStoreDevtool } from "simple-zustand-devtools";
 
 export interface Task{
     id: number;
@@ -18,5 +19,7 @@ const useTaskStore = create<TaskStore>(set=> ({
    })),
   Delete: (taskid)=> set(TaskList=> ({Tasks: TaskList.Tasks.filter(t=> t.id!==taskid)})),
 }))
+if(process.env.NODE_ENV === "development")
+    mountStoreDevtool("tasks store", useTaskStore)
 
 export default useTaskStore
