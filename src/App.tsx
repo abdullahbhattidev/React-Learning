@@ -6,9 +6,8 @@ import TaskList from "./statemanagement/TaskList";
 function App() {
 return(
     <>
-     <Counter/>
+      <Counter/>
       <Navbar/>
-      <TaskList />
     </>
         
       

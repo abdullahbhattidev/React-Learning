@@ -1,19 +1,23 @@
+import { Link, useNavigate } from 'react-router-dom'
 import useAuthStore from './AuthStore'
+import { useRef } from 'react'
 
 const LoginStatus = () => {  
-  const{user, Login,Logout}=useAuthStore()
-  if(!user)
+  const{Login}=useAuthStore()
+  const navigate = useNavigate()
+  const ref = useRef<HTMLInputElement>(null)
   return (
     <div className='mx-3'>
-        <a className = "text-white"  onClick={()=> Login()} href='#'>Login</a>
+      <form onSubmit={e=> {
+           e.preventDefault();
+          if(ref.current?.value==="cutie") navigate("/TaskList")
+      }
+      }>
+        <input ref={ref} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
+        <button onClick={()=>Login()} className='btn btn-primary mx-3'>Login</button>
+      </form>
+      
     </div>
-  )
-  return (
-    <div className='mx-3'>
-      <span className='mx-3'>{user}</span>
-      <a  className = "text-white" onClick={()=> Logout() } href='#'>Logout</a>
-    </div>
-  
   )
 }
 
