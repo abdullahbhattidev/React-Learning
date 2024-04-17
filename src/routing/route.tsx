@@ -5,7 +5,7 @@ import TaskList from '../statemanagement/TaskList'
 
 const router = createBrowserRouter([
     {path:'/', element: <App/>},
-    {path:'/TaskList', element: <TaskList/>}
+    {path:'/TaskList/:user', element: <TaskList/>}
 ])
 
 export default router
