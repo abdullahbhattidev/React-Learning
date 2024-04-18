@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import useAuthStore from './AuthStore'
 import useTaskStore from './TaskStore'
 
@@ -6,6 +6,10 @@ const TaskList = () => {
   const {Tasks, Add, Delete} =useTaskStore()
   const{user}=useAuthStore()
   const navigate =  useNavigate()
+  const params = useParams()
+  const[searchParam, setSearchParam]= useSearchParams()
+  const location = useLocation()
+  console.log(params, searchParam, location)
   return (
     <>
         <h1>Welcome {user}</h1>
