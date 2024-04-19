@@ -9,7 +9,6 @@ const TaskList = () => {
   const params = useParams()
   const[searchParam, setSearchParam]= useSearchParams()
   const location = useLocation()
-  console.log(params, searchParam, location)
   return (
     <>
         <h1>Welcome {user}</h1>
