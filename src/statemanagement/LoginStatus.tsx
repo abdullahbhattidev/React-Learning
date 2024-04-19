@@ -1,12 +1,12 @@
 import { useRef } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import useAuthStore from './AuthStore'
-import useTaskStore from './TaskStore'
 
 const LoginStatus = () => {  
   const{user,Login}=useAuthStore()
   const navigate = useNavigate()
   const ref = useRef<HTMLInputElement>(null)
+  throw new Error();
   return (
     <>
       <div className= 'm-3' style={{width: '20rem'}}>      

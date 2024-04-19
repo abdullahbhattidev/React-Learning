@@ -1,8 +1,6 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
-import Counter from "./statemanagement/Counter";
 import Navbar from "./statemanagement/Navbar";
-import TaskList from "./statemanagement/TaskList";
 
 function App() {
 return(
