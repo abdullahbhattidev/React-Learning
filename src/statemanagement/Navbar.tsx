@@ -1,14 +1,16 @@
 import { Link, NavLink } from 'react-router-dom'
 import useTaskStore from './TaskStore'
+import PrivateRoute from '../routing/privateRoute';
+import useAuthStore from './AuthStore';
 
 const Navbar = () => {
   const Tasks =useTaskStore(s=> s.Tasks);
-
+  const{user}= useAuthStore()
   return (
     <nav className='navbar  bg-primary d-flex justify-content-between text-white'>
         <div className='d-flex justify-content-between mx-3'>
           <NavLink className='mx-3 nav-link' to={"/"}>Home</NavLink>
-          <NavLink className=' nav-link ' to={"LoginStatus"}>Tasks</NavLink>
+          <NavLink className=' nav-link ' to={`LoginStatus`}>Tasks</NavLink>
         </div>
         <div className='mx-3 '>
           <span>{Tasks.length}</span>

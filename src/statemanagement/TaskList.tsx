@@ -6,9 +6,6 @@ const TaskList = () => {
   const {Tasks, Add, Delete} =useTaskStore()
   const{user}=useAuthStore()
   const navigate =  useNavigate()
-  const params = useParams()
-  const[searchParam, setSearchParam]= useSearchParams()
-  const location = useLocation()
   return (
     <>
         <h1>Welcome {user}</h1>
